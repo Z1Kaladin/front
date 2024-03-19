@@ -8,7 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './food.component.scss'
 })
 export class FoodComponent {
- constructor (){
-  
- }
+
 }
