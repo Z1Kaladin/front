@@ -1,0 +1,23 @@
+@if (food) {
+
+<mat-card class="w-80">
+    <img mat-card-image src="{{food.image}}" alt="Food photo">
+    <mat-card-header>
+        <mat-card-title>{{food.name | titlecase }} </mat-card-title>
+        <mat-card-subtitle>{{food.category}} | {{food.price | currency: 'MXN'}} </mat-card-subtitle>
+        
+      </mat-card-header>
+    <mat-card-content class="!pt-4">
+      <p>
+        {{food.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="flex flex gap-4">
+      <a mat-flat-button color="accent" [routerLink]="['/food/form',food.id]">Actualizar</a>
+      <button mat-flat-button color="warn" (click)="openDialog(food)">Borrar</button>
+      <a mat-flat-button [routerLink]="['/food/details-food',food.id]" color="Primary" extended>
+        Detalles
+      </a>
+    </mat-card-actions>
+  </mat-card>
+}

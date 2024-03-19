@@ -1,0 +1,103 @@
+<div class="flex flex-row gap-6 w-full">
+  <form [formGroup]="form" class="w-1/2 p-4">
+    <button mat-icon-button [routerLink]="'/food/food-list'" >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  <h1 class="text-2xl text-black font-bold">{{edit ? 'Editar comida' : 'Añadir nueva comida'}}</h1>
+
+  <!--CAMPO DE NOMBRE-->
+  <div class="example-container pb-2">
+<mat-form-field class="w-full" appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="name" placeholder="Ejem. Pizza" required >
+      @if (name?.invalid && (name?.dirty || name?.touched)) {
+        <mat-error>
+          @if (name?.hasError('required')) {
+        <span class="text-xs">Este campo es requerido.</span>
+      
+         }
+        </mat-error>
+      }
+  </mat-form-field>
+</div>
+
+  <!--CAMPO DE descripcion-->
+  <div class="example-container pb-2">
+    <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput formControlName="description" required></textarea>
+          @if (description?.invalid && (description?.dirty || description?.touched)) {
+            <mat-error>
+              @if (description?.hasError('required')) {
+            <span class="text-xs">Este campo es requerido.</span>
+          
+             }
+             @if (description?.hasError('minlength')){
+              <span class="text-xs">Debe contener minimo {{description?.getError('minlength').requiredLength}} caracteres, tiene {{description?.getError('minlength').actualLength}}  </span>
+             }
+
+            </mat-error>
+          }
+      </mat-form-field>
+    </div>
+
+      <!--CAMPO DE IMAGEN-->
+  <div class="example-container pb-2">
+    <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="image" placeholder="Ejem. Pizza" required>
+          @if (image?.invalid && (image?.dirty || image?.touched)) {
+            <mat-error>
+              @if (image?.hasError('required')) {
+            <span class="text-xs">Este campo es requerido.</span>
+          
+             }
+            </mat-error>
+          }
+      </mat-form-field>
+    </div>
+  <!--CAMPO DE CATEGORIA-->
+  <div class="example-container pb-2">
+    <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="category">
+          <mat-option value="food">comida</mat-option>
+          <mat-option value="drink">bebida</mat-option>
+        </mat-select>
+          @if (category?.invalid && (category?.dirty || category?.touched)) {
+            <mat-error>
+              @if (category?.hasError('required')) {
+            <span class="text-xs">Este campo es requerido.</span>
+          
+             }
+            </mat-error>
+          }
+      </mat-form-field>
+    </div>
+      <!--CAMPO DE PRECIO-->
+  <div class="example-container pb-2">
+    <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Precio</mat-label>
+        <input matInput formControlName="price" type="number" class="example-right-align" placeholder="0" required>
+        <span matTextPrefix>$&nbsp;</span>
+        <span matTextSuffix>.00</span>      
+          @if (price?.invalid && (price?.dirty || price?.touched)) {
+            <mat-error>
+              @if (price?.hasError('required')) {
+            <span class="text-xs">Este campo es requerido.</span>
+          
+             }
+             @if (price?.hasError('min')) {
+              <span class="text-xs">El valor minimo es de {{price?.getError('min').min}}</span>
+             }
+            </mat-error>
+          }
+        </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="edit ? updateData() : sendData()"  >{{edit ? 'Actualizar' : 'Añadir' }}</button>
+  </form>
+    <div class="w-1/2 p-4">
+      <img class="rounded-lg w-full aspect-video object-contain" src="{{image?.value}}" alt="">
+
+    </div>
+</div>

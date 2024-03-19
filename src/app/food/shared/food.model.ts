@@ -1,8 +1,8 @@
 export interface Food {
-    id:number
+    id?:number
     image:string
     name: string
-    Category: 'dirnk' | 'food';
+    category: string;
     description: string
     price: number
 

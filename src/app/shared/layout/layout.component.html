@@ -1,28 +1,39 @@
-<mat-toolbar>
-    <button mat-icon-button (click)="open()" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>My App</span>
-    <span class="flex flex-auto"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar>
-<!-- CONTENEDOR Y SIDEBAR -->
-  <mat-drawer-container class="w-full h-full pt-10">
-    <mat-drawer mode="side" [opened]="opened" class="w-60 px-2 pt-16">
-        <!-- MENU DE OPCIONES-->
-        Drawer content
-    </mat-drawer>
-    <mat-drawer-content>
-        <!-- RUTAS -->
-         <ng-content></ng-content>
-         </mat-drawer-content>
-  </mat-drawer-container>
+<mat-toolbar [color]="'primary'">
+  <button mat-icon-button (click)="snav.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="flex flex-auto"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container class="w-full h-full pt-10">
+  <mat-drawer mode="side" #snav class="w-60 px-2 pt-16">
+    
+    <mat-nav-list>
+      @for (link of links; track link) {
+        <mat-list-item [routerLink]="link.routerLink">
+           <a matListItemTitle href="...">{{ link.label }}</a>
+           <button mat-icon-button matListItemMeta>
+              <mat-icon>{{link.icon}}</mat-icon>
+           </button>
+        </mat-list-item>
+      }
+    </mat-nav-list>
   
 
+  </mat-drawer>
+
+
+<mat-drawer-content>
+  <ng-content></ng-content>
+</mat-drawer-content>
+
+</mat-drawer-container>
   
   

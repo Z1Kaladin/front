@@ -1,0 +1,37 @@
+@if (food) {
+    <div class="p-6 bg-gray-100 rounded shadow-md mx-auto max-w-sm">
+        <div class="relative">
+          <img [src]="food.image" [alt]="food.name" class="rounded-lg shadow-md w-full h-64 object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-r from-gray-100 opacity-25"></div>
+        </div>
+      
+        <div class="flex flex-col px-6 py-4 space-y-2">
+          <h2 class="text-2xl font-bold tracking-tight leading-snug">{{ food.name }}</h2>
+          <p class="text-lg text-gray-600 line-clamp-3">{{ food.description }}</p>
+      
+          <hr class="my-4 border-gray-200">
+      
+          <div class="flex items-center justify-between text-gray-600 font-medium text-sm">
+            <p>Category: {{ food.category }}</p>
+            <p>Price: {{ food.price | currency: 'MXN' }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-6 bg-gray-100 rounded shadow-md mx-auto max-w-sm">
+    </div>
+  
+  <div class="flex justify-center mt-4">
+    <ul class="list-none flex space-x-4">
+      <li>
+        <button (click)="openDialog(food)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-sm">Borrar</button>
+      </li>
+      <li>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-sm">Actualizar</button>
+      </li>
+      <li>
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-sm">Añadir nueva comida</button>
+      </li>
+    </ul>
+  </div>
+
+}
